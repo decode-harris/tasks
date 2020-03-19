@@ -1,0 +1,176 @@
+/* css reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+/* css variables */
+:root {
+    --wireframe: 4px solid darkblue;
+    --debugging: 3px dotted darkred;
+    --component: 3px dotted darkgreen;
+
+    --sp-sm: 1%;
+    --sp-md: 5%;
+    --sp-lg: 10%;
+
+    --clr-main: #000;
+    --clr-alt: #FFF;
+    --clr-off: rgb(184, 184, 184);
+}
+/* css globals */
+.container {
+    height: 100vh;
+    width: 100vw;
+
+    border: 2px solid darkblue;
+    background: var(--clr-off);
+
+    overflow: hidden;
+}
+
+/* 
+    table of contents
+
+    1. header : header
+        div : elmnts
+
+    2. section : content
+        ul : output
+        div : input
+    
+    3. media : desktop
+
+*/
+
+
+/* header : header */
+.header {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(25px, auto);
+
+    height: 20vh;
+    width: 100%;
+
+    border: var(--wireframe);
+}
+.header .elmnts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: var(--sp-md);
+    border: var(--debugging);
+}
+.header .elmnts:nth-child(1) {
+    grid-column: span 3;
+    grid-row: span 2;
+}
+.header .elmnts:nth-child(2) {
+    grid-column: span 3;
+    grid-row: span 2;
+}
+
+
+
+/* section : content */
+.content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(25px, auto);
+
+    border: var(--wireframe);
+
+    height: 80vh;
+}
+
+/* ul : output */
+.output {
+    grid-column: span 6;
+    grid-row: span 2;
+
+    border: var(--component);
+
+    display: flex;
+    flex-direction: column;
+    
+
+    width: 100%;
+}
+.output li {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    padding-left: var(--sp-md);
+    letter-spacing: 2px;
+    min-height: 50px;
+    border: var(--debugging);
+        /* height: 100%;
+        width: 100%; */
+
+        width: 100%;    
+    
+        position: relative;    
+}
+
+.output li span {
+    
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    border: var(--component);
+    height: 100%;
+    width: 30%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.output li span button {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+}
+/* form : form */
+.form {
+    grid-column: span 6;
+    grid-row: span 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #FFF;
+
+    border: var(--component);
+}
+.form button {
+    flex: 30%;
+    font-size: 1.35rem;
+    padding: var(--sp-md);
+    margin: 0 2%;
+
+    background: var(--clr-off);
+    color: var(--clr-alt);
+}
+.form input {
+    font-weight: bold;
+    background: var(--clr-off);
+    color: var(--clr-main);
+    font-size: 1.45rem;
+    letter-spacing: 2px;
+    width: 70%;
+    padding: var(--sp-md);
+    margin: 0 2%;
+
+
+}
+
+
+
