@@ -1,69 +1,107 @@
-const refresh = document.querySelector('.btn_refresh');
-const dateElmnt = document.querySelector('.date_elmnt');
-// output list elmnt
-const output = document.querySelector('.output');
-// input list elmnt
-const input = document.querySelector('.input');
-// button : add task
-const btn_add = document.querySelector('.btn_add');
-// event : add task
-btn_add.addEventListener('click', (e)=>{
-    // prevent form default submitting
+// selector [ gro ] : form input
+let gro = document.querySelector('#gro');
+
+// selector [ add ] : add button
+let add = document.querySelector('#add');
+
+// event [ add ] : add item 
+add.addEventListener('click', (e)=>{
+
+    // prevent form submit
     e.preventDefault();
-    // validate user input
-    if (input.value == '') {
-        alert('please fill in a task');
-    } 
-    else if(input.value.length > 20) {
-        alert('please use under 20 letters for tasks');
+
+    // validate form input
+    if (gro.value == '' || gro.value == null) {
+        
+        // input helper
+        alert('please fill in an item');
+        
+        // focus gro input
+        gro.focus();
+    }
+    else if (gro.value.length >= 20) {
+        
+        // input helper
+        alert('please use 20 characters or less');
+
+        // focus gro input
+        gro.focus();
     }
     else {
-        // create list & span elmnt
-        let task = document.createElement('li');
-        let span = document.createElement('span');
-        // get user input for task
-        task.innerHTML = input.value;
-        // create checked & delete buttons
-        let btn_checked = document.createElement('button');
-        let btn_delete = document.createElement('button');
-        // attach icons for checked & delete buttons
-        btn_checked.innerHTML = '<i class="fas fa-check"></i>';
-        btn_delete.innerHTML = '<i class="fas fa-times"></i>';
-
-        // event - task complete
-        btn_checked.addEventListener('click', ()=>{
-            if (task.style.background == '') {
-                task.style.background = 'green';
-                task.style.color = '#FFF';
-                task.style.textDecoration = 'line-through';
-            } else {
-                task.style.background = '';
-                task.style.textDecoration = 'none';
-            }
-            
-        });
-
-        // event - task delete
-        btn_delete.addEventListener('click', ()=>{
-            task.style.display = 'none';
-        });
-
-        // attach btns to span elmnt
-        span.appendChild(btn_checked);
-        span.appendChild(btn_delete);
-        // attach span to span elmnt
-        task.appendChild(span);
-        // attach task to output list
-        output.appendChild(task);
-        // check for user input
-        console.log(input.value);
+        
+        // init app
+        runApp();
     }
-    // reset form to empty
-    input.value = '';
+
 });
 
+// function [ runApp ] : start application
+function runApp() {
 
+    // selector [ out ] : output list
+    let output = document.querySelector('#out');
+    
+    // create list element for gro value 
+    let task = document.createElement('li');
 
+    // create span element for buttons
+    let span = document.createElement('span');
 
+    // create control buttons
+    let che = document.createElement('button');
+    let del = document.createElement('button');
 
+    // assign gro value to new task element
+    task.innerHTML = gro.value;
+    
+    // assign font awesome icons to buttons
+    che.innerHTML = '<i class="fas fa-check"></i>';
+    del.innerHTML = '<i class="fas fa-times"></i>';
 
+    // append buttons to span element
+    span.appendChild(che);
+    span.appendChild(del);
+
+    // append span to list element
+    task.appendChild(span);
+
+    // append list to unordered list element
+    output.appendChild(task);
+
+    // reset form input
+    gro.value = '';
+    
+    // event [ che ] : check button
+    che.addEventListener('click', ()=>{
+
+        // validate checked list item
+        if (task.style.textDecoration != 'line-through') {
+            task.style.textDecoration = 'line-through';
+
+            // test
+            console.log('item checked');
+        } 
+        // return list item to default
+        else {
+            task.style.textDecoration = 'none';
+
+            // test
+            console.log('item un-checked');
+        }
+        
+    });
+
+    // event  [ del ] : delete button
+    del.addEventListener('click', ()=>{
+        
+        // remove task element
+        task.style.display = 'none';
+
+        // test
+        console.log('item deleted');
+
+    });
+
+    // test
+    console.log(gro.value);
+}
